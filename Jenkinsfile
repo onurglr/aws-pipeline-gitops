@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        APP_NAME = "devops-03-pipeline-aws-onur"
+        APP_NAME = "aws-pipeline"
     }
     stages {
         stage('Cleanup Workspace') {
@@ -13,7 +13,7 @@ pipeline {
         }
         stage('SGM Github') {
             steps {
-                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/onurglr/onur-devops-03-pipeline-aws-gitops']])
+                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/onurglr/aws-pipeline-gitops/']])
             }
         }
         stage("Update the Deployment Tags") {
@@ -22,7 +22,7 @@ pipeline {
            echo "Before update:"
            cat deployment.yaml
 
-           sed -i "s|\\(image: *onurguler18/devops-03-pipeline-aws-onur:\\).*|\\1${IMAGE_TAG}|" deployment.yaml
+           sed -i "s|\\(image: *onurguler18/aws-pipeline:\\).*|\\1${IMAGE_TAG}|" deployment.yaml
 
            echo "After update:"
            cat deployment.yaml
@@ -43,7 +43,7 @@ pipeline {
                 git config user.email "onur18guler@gmail.com"
 
 # (opsiyonel) detached HEAD ise branch'e geç
-                git checkout -B master origin/master || true
+                git checkout -B main origin/main || true
 
                 git add deployment.yaml || true
 
@@ -56,7 +56,7 @@ pipeline {
                 git commit -m "Updated Deployment Manifest"
 
 # Token'ı URL'de kullan; Jenkins maskeler
-                git push "https://${GIT_USER}:${GIT_TOKEN}github.com/onurglr/onur-devops-03-pipeline-aws-gitops" HEAD:main
+                git push "https://${GIT_USER}:${GIT_TOKEN}github.com/onurglr/aws-pipeline-gitops" HEAD:main
 '''
                 }
             }

@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: onur-devops-03-pipeline-cd-onur
+  name: aws-pipeline-cd
   namespace: default
 labels:
-  app: onur-devops-03-pipeline-cd-onur
+  app: aws-pipeline-cd
 spec:
   selector:
-    app: onur-devops-03-pipeline-cd-onur
+    app: aws-pipeline-cd
   ports:
     - port: 8080        # Cluster içinden erişim için Service portu
       targetPort: 8080  # Pod içindeki container portu
