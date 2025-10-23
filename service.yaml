@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: onur-devops-03-pipeline-cd-onur
+  namespace: default
+labels:
+  app: onur-devops-03-pipeline-cd-onur
+spec:
+  selector:
+    app: onur-devops-03-pipeline-cd-onur
+  ports:
+    - port: 8080        # Cluster içinden erişim için Service portu
+      targetPort: 8080  # Pod içindeki container portu
+      nodePort: 31824
+  type: NodePort      
+#  type: ClusterIP       # Dışarıya açılmaz, port-forward ile kullanacağız

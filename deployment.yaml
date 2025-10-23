@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: onur-devops-03-pipeline-cd-onur-deployment
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: onur-devops-03-pipeline-cd-onur
+  template:
+    metadata:
+      labels:
+        app: onur-devops-03-pipeline-cd-onur
+    spec:
+      containers:
+        - name: onur-devops-03-pipeline-cd-onur
+          image: onurguler18/devops-03-pipeline-aws-onur:1.0.10
+          resources:
+            limits:
+              memory: "256Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 8080   # Pod içindeki .jar uygulamanın portu
