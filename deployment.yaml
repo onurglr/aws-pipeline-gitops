@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: aws-pipeline-cd
-          image: onurguler18/devops-03-pipeline-aws-onur:1.0.10
+          image: onurguler18/aws-pipeline:1.0.10
           resources:
             limits:
               memory: "256Mi"
